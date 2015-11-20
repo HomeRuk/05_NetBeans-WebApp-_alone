@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOfficerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOfficerLabel_offid}"/>
+                    <h:outputText value="#{officerController.selected.offid}" title="#{bundle.ViewOfficerTitle_offid}"/>
+                    <h:outputText value="#{bundle.ViewOfficerLabel_offname}"/>
+                    <h:outputText value="#{officerController.selected.offname}" title="#{bundle.ViewOfficerTitle_offname}"/>
+                    <h:outputText value="#{bundle.ViewOfficerLabel_offpass}"/>
+                    <h:outputText value="#{officerController.selected.offpass}" title="#{bundle.ViewOfficerTitle_offpass}"/>
+                    <h:outputText value="#{bundle.ViewOfficerLabel_offage}"/>
+                    <h:outputText value="#{officerController.selected.offage}" title="#{bundle.ViewOfficerTitle_offage}"/>
+                    <h:outputText value="#{bundle.ViewOfficerLabel_offaddress}"/>
+                    <h:outputText value="#{officerController.selected.offaddress}" title="#{bundle.ViewOfficerTitle_offaddress}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{officerController.destroyAndView}" value="#{bundle.ViewOfficerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOfficerEditLink}"/>
+                <br />
+                <h:commandLink action="#{officerController.prepareCreate}" value="#{bundle.ViewOfficerCreateLink}" />
+                <br />
+                <h:commandLink action="#{officerController.prepareList}" value="#{bundle.ViewOfficerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOfficerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

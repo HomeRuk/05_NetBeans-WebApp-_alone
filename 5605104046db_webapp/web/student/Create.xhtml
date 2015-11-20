@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStudentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStudentLabel_stdid}" for="stdid" />
+                    <h:inputText id="stdid" value="#{studentController.selected.stdid}" title="#{bundle.CreateStudentTitle_stdid}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_stdid}"/>
+                    <h:outputLabel value="#{bundle.CreateStudentLabel_stdpass}" for="stdpass" />
+                    <h:inputText id="stdpass" value="#{studentController.selected.stdpass}" title="#{bundle.CreateStudentTitle_stdpass}" required="true" requiredMessage="#{bundle.CreateStudentRequiredMessage_stdpass}"/>
+                    <h:outputLabel value="#{bundle.CreateStudentLabel_stdage}" for="stdage" />
+                    <h:inputText id="stdage" value="#{studentController.selected.stdage}" title="#{bundle.CreateStudentTitle_stdage}" />
+                    <h:outputLabel value="#{bundle.CreateStudentLabel_stdaddress}" for="stdaddress" />
+                    <h:inputText id="stdaddress" value="#{studentController.selected.stdaddress}" title="#{bundle.CreateStudentTitle_stdaddress}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentController.create}" value="#{bundle.CreateStudentSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{studentController.prepareList}" value="#{bundle.CreateStudentShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateStudentIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRegistersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRegistersEmpty}" rendered="#{registersController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{registersController.items.rowCount > 0}">
+                    <h:outputText value="#{registersController.pagination.pageFirstItem + 1}..#{registersController.pagination.pageLastItem + 1}/#{registersController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{registersController.previous}" value="#{bundle.Previous} #{registersController.pagination.pageSize}" rendered="#{registersController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{registersController.next}" value="#{bundle.Next} #{registersController.pagination.pageSize}" rendered="#{registersController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{registersController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegistersTitle_regid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.regid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegistersTitle_credittotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credittotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegistersTitle_offid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.offid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegistersTitle_stdid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stdid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRegistersTitle_registerDetails}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.registerDetails}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{registersController.prepareView}" value="#{bundle.ListRegistersViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{registersController.prepareEdit}" value="#{bundle.ListRegistersEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{registersController.destroy}" value="#{bundle.ListRegistersDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{registersController.prepareCreate}" value="#{bundle.ListRegistersCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRegistersIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

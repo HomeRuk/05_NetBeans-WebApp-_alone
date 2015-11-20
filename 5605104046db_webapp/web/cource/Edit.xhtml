@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCourceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCourceLabel_coid}" for="coid" />
+                    <h:inputText id="coid" value="#{courceController.selected.coid}" title="#{bundle.EditCourceTitle_coid}" required="true" requiredMessage="#{bundle.EditCourceRequiredMessage_coid}"/>
+                    <h:outputLabel value="#{bundle.EditCourceLabel_cocredit}" for="cocredit" />
+                    <h:inputText id="cocredit" value="#{courceController.selected.cocredit}" title="#{bundle.EditCourceTitle_cocredit}" />
+                    <h:outputLabel value="#{bundle.EditCourceLabel_cohours}" for="cohours" />
+                    <h:inputText id="cohours" value="#{courceController.selected.cohours}" title="#{bundle.EditCourceTitle_cohours}" />
+                </h:panelGrid>
+                <h:commandLink action="#{courceController.update}" value="#{bundle.EditCourceSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCourceViewLink}"/>
+                <br />
+                <h:commandLink action="#{courceController.prepareList}" value="#{bundle.EditCourceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCourceIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
